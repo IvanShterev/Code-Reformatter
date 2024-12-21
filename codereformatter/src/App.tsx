@@ -1,12 +1,39 @@
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
   const [selectedLanguage, setSelectedLanguage] = useState('JavaScript');
+  const [iconClass, setIconClass] = useState('js');
 
-  const handleLanguageChange = (language: any) => {
+  const handleLanguageChange = (language: string) => {
     setSelectedLanguage(language);
   };
+
+  const languagesIcons: Record<string, string> = {
+    'JavaScript': 'js',
+    'Python': 'python',
+    'Java': 'java',
+    'HTML': 'html5',
+    'CSS': 'css3-alt'
+  }
+
+  useEffect(() => {
+    setIconClass(languagesIcons[selectedLanguage]);
+  }, [selectedLanguage]);
+
+  const [codeInput, setCodeInput] = useState('');
+
+  const handleCodeChange = (event: any) => {
+    setCodeInput(event.target.value);
+  };
+
+  const handleCode = () => {
+    console.log('Code Submitted:', codeInput);
+  };
+
+  const clearCode = () => {
+    setCodeInput('');
+  }
 
   return (
     <>
@@ -20,7 +47,7 @@ function App() {
                 
                 <button className="dropdown-btn">
 
-                    <i className={`fa-brands fa-${selectedLanguage.toLowerCase()}`}></i>
+                    <i className={`fa-brands fa-${iconClass}`}></i>
                     
                     {selectedLanguage}
 
@@ -59,9 +86,20 @@ function App() {
 
             </div>
 
-            <textarea id="code-input" placeholder={`Enter ${selectedLanguage} code here`} />
+            <textarea
+                id="code-input"
+                placeholder={`Enter ${selectedLanguage} code here`}
+                value={codeInput}
+                onChange={handleCodeChange}
+            />
 
-            <button>Format Code</button>
+            <div className="btns-cont">
+
+                <button onClick={handleCode} className='btn-down' id='format-btn'>Format Code</button>
+
+                <button onClick={clearCode} className='btn-down' id='clear-btn'>Clear Code</button> 
+
+            </div>
 
         </div>
 

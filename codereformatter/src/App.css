@@ -9,6 +9,8 @@
     width: 100vw;
     display: flex;
     justify-content: center;
+    background-color: #1F1F1F;
+    color: #fff;
 }
 
 .container {
@@ -35,12 +37,32 @@
     font-size: 16px;
     vertical-align: top;
     resize: none;
+    border-radius: 15px;
+    background-color: transparent;
+    border: 2px solid #d8cccc;
+    color: #fff;
+    outline: none;
 }
 
-button {
+.btns-cont{
+    display: flex;
+    gap: 20px;
+}
+
+.btn-down {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+    color: #fff;
+    border: none;
+}
+
+#format-btn{
+    background-color: green;
+}
+
+#clear-btn{
+    background-color: #3C5A99;
 }
 
 .dropdown {
@@ -53,9 +75,10 @@ button {
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
-    border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #fff;
+    background-color: #2A3236;
+    border: none;
+    color: #fff;
     cursor: pointer;
     width: 200px;
 }
@@ -73,7 +96,6 @@ button {
     top: 100%;
     left: 0;
     width: 200px;
-    border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -87,10 +109,14 @@ button {
     cursor: pointer;
     display: flex;
     align-items: center;
+    background-color: #2A3236;
+    color: #fff;
+    display: flex;
+    gap: 10px;
 }
 
 .dropdown-menu .dropdown-item:hover {
-    background-color: #f0f0f0;
+    background-color: #181C1F;
 }
 
 .dropdown:hover .dropdown-menu {
