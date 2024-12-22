@@ -1,5 +1,12 @@
 import './App.css';
 import { useEffect, useState } from 'react';
+import {
+    formatJavaScriptCode,
+    formatPythonCode,
+    formatJavaCode,
+    formatHTMLCode,
+    formatCSStCode,
+} from './Reformatter';
 
 function App() {
   const [selectedLanguage, setSelectedLanguage] = useState('JavaScript');
@@ -27,8 +34,20 @@ function App() {
     setCodeInput(event.target.value);
   };
 
-  const handleCode = () => {
-    console.log('Code Submitted:', codeInput);
+  const languagesFuncs: Record<string, (selectedLanguage: string) => Promise<string> | string> = {
+    'JavaScript': formatJavaScriptCode,
+    'Python': formatPythonCode,
+    'Java': formatJavaCode,
+    'HTML': formatHTMLCode,
+    'CSS': formatCSStCode,
+};
+
+  const handleCode = async () => {
+    const formatter = languagesFuncs[selectedLanguage];
+    if (typeof formatter === 'function') {
+      const formattedCode = await formatter(codeInput);
+      setCodeInput(formattedCode);
+  }
   };
 
   const clearCode = () => {
